@@ -1,0 +1,95 @@
+export function AdminDashboard(polls) {
+
+    const totalPolls = polls.length;
+
+    const totalVotes = polls.reduce(
+        (sum, poll) => sum + (poll.totalVotes || 0),
+        0
+    );
+
+    const visiblePolls = polls.filter(
+        poll => poll.isVisible !== false
+    ).length;
+
+    const hiddenPolls = totalPolls - visiblePolls;
+
+    return `
+
+        <div class="row mb-4">
+
+            <div class="col-md-3">
+
+                <div class="card poll-card text-center">
+
+                    <div class="card-body">
+
+                        <h2>📝</h2>
+
+                        <h4>${totalPolls}</h4>
+
+                        <small>Total Polls</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="card poll-card text-center">
+
+                    <div class="card-body">
+
+                        <h2>🗳️</h2>
+
+                        <h4>${totalVotes}</h4>
+
+                        <small>Total Votes</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="card poll-card text-center">
+
+                    <div class="card-body">
+
+                        <h2>👁️</h2>
+
+                        <h4>${visiblePolls}</h4>
+
+                        <small>Visible Polls</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="card poll-card text-center">
+
+                    <div class="card-body">
+
+                        <h2>🙈</h2>
+
+                        <h4>${hiddenPolls}</h4>
+
+                        <small>Hidden Polls</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+}
